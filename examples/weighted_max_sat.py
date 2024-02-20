@@ -18,6 +18,8 @@ def f(x):
 if __name__ == '__main__':
     from itertools import product
     from autoqubo import SamplingCompiler, Utils
+    import dynex
+    import dimod
 
     print("Sampling:")
     for x in product(range(2), repeat=3):
@@ -41,11 +43,11 @@ if __name__ == '__main__':
             print(f"x[{i+1}, {j+1}] = {coefficient}")
 
     print("Best solutions (minimize)")
-    solutions, energy_values = Utils.solve(qubo, offset)
-    for s, e in zip(solutions, energy_values):
-        print(f"x={s}, energy={e}")
-
+    #solutions, energy_values = Utils.solve(qubo, offset)
+    sampleset = dynex.sample_qubo(qubo, offset, num_reads=1024, annealing_time=200)
+    print(sampleset)
+    
     print("Best solutions (maximize)")
-    solutions, energy_values = Utils.solve(-qubo, -offset)
-    for s, e in zip(solutions, energy_values):
-        print(f"x={s}, energy={-e}")
+    #solutions, energy_values = Utils.solve(-qubo, -offset)
+    sampleset = dynex.sample_qubo(-qubo, -offset, num_reads=1024, annealing_time=200)
+    print(sampleset)
