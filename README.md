@@ -24,6 +24,62 @@ install autoqubo as package:
 pip install autoqubo
 ```
 
+Example
+-------
+```
+from autoqubo import Binarization, SamplingCompiler, SearchSpace, Utils
+import dynex
+
+def f(x):
+    x1, x2, x3 = x
+    val = 0
+
+    # clause 1
+    if x1 or not x2:
+        val += 3
+    # clause 2
+    if x3:
+        val += 1
+    # clause 3
+    if not x3 or x2:
+        val += 4
+
+    return val
+
+# Automatically create the Qubo formulation based on function f():
+qubo, offset = SamplingCompiler.generate_qubo_matrix(fitness_function=f, use_multiprocessing=False, input_size=3)
+print(qubo)
+
+# Sample on the Dynex platform:
+sampleset = dynex.sample_qubo(qubo, offset, mainnet=False, num_reads=1024, annealing_time=200);
+
+# Output result:
+print(sampleset)
+```
+
+Output:
+```
+[[ 0.  3.  0.]
+ [ 0. -3.  4.]
+ [ 0.  0. -3.]]
+
+[DYNEX] PRECISION SET TO 0.0001
+[DYNEX] SAMPLER INITIALISED
+[DYNEX|TESTNET] *** WAITING FOR READS ***
+╭────────────┬─────────────┬───────────┬───────────────────────────┬─────────┬─────────┬────────────────╮
+│   DYNEXJOB │   BLOCK FEE │ ELAPSED   │ WORKERS READ              │ CHIPS   │ STEPS   │ GROUND STATE   │
+├────────────┼─────────────┼───────────┼───────────────────────────┼─────────┼─────────┼────────────────┤
+│         -1 │           0 │           │ *** WAITING FOR READS *** │         │         │                │
+╰────────────┴─────────────┴───────────┴───────────────────────────┴─────────┴─────────┴────────────────╯
+
+[DYNEX] FINISHED READ AFTER 0.00 SECONDS
+[DYNEX] SAMPLESET READY
+
+   0  1  2 energy num_oc.
+0  0  0  1    4.0       1
+['BINARY', 1 rows, 1 samples, 3 variables]
+```
+
 How to cite
 -----------
 If you find our work useful, please cite the paper below:
