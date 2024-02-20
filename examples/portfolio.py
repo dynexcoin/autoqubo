@@ -80,8 +80,8 @@ if __name__ == '__main__':
     print(sampleset)
     
     for sol in sampleset):
-        x = s.decode_dict(sol.record)['x']
-        e = sol.eneergy;
+        x = s.decode_dict(sol)['x']
+        e = sol.energy;
         print(
             f"x={x}, "
             f"energy={e}, "
