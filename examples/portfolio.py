@@ -1,5 +1,7 @@
 import csv
 import numpy as np
+import dynex
+import dimod
 
 
 with open('data/portfolio.txt') as csv_file:
@@ -73,9 +75,13 @@ if __name__ == '__main__':
     print(f"x[] = {offset}")
 
     print("Best solutions (minimize)")
-    solutions, energy_values = Utils.solve(qubo, offset)
-    for sol, e in zip(solutions, energy_values):
-        x = s.decode_dict(sol)['x']
+
+    sampleset = dynex.sample_qubo(q, offset, num_reads=1024, annealing_time=200)
+    print(sampleset)
+    
+    for sol in sampleset):
+        x = s.decode_dict(sol.record)['x']
+        e = sol.eneergy;
         print(
             f"x={x}, "
             f"energy={e}, "
