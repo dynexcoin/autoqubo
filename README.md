@@ -49,14 +49,15 @@ def f(x):
 
     return val
 
-# Automatically create the Qubo formulation based on function f():
+# Automatically create the Qubo formulation based on function f()
+# The solution is represetned by 3 bits
 qubo, offset = SamplingCompiler.generate_qubo_matrix(fitness_function=f, use_multiprocessing=False, input_size=3)
 print(qubo)
 
-# Sample on the Dynex platform:
+# Sample on the Dynex platform
 sampleset = dynex.sample_qubo(qubo, offset, mainnet=False, num_reads=1024, annealing_time=200);
 
-# Output result:
+# Output result
 print(sampleset)
 ```
 
