@@ -10,7 +10,7 @@ can completely decouple the input and output representation.
 </p>
 
 
-This repository acts as a companion to the following Fujitsu Research publications:
+This repository was created by Fujitsu Research and is based on the following publications:
 
 1. Alberto Moraglio, Serban Georgescu, and Przemysław Sadowski. 2022. AutoQubo: Data-driven automatic QUBO generation. In Genetic and Evolutionary Computation Conference Companion (GECCO ’22 Companion), July 9–13, 2022, Boston, MA, USA. ACM, New York, NY, USA, 8 pages. https://doi.org/10.1145/3520304.3533965
 
