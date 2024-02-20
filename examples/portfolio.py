@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
     print("Best solutions (minimize)")
 
-    sampleset = dynex.sample_qubo(q, offset, num_reads=1024, annealing_time=200)
+    sampleset = dynex.sample_qubo(qubo, offset, num_reads=1024, annealing_time=200)
     print(sampleset)
     
     for sol in sampleset):
