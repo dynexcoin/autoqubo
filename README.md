@@ -47,8 +47,8 @@ def f(x):
 
     return val
 
-# Automatically create the Qubo formulation based on function f()
-# The solution is represetned by 3 bits
+# Automatically create the Qubo formulation based on function f(x)
+# The solution is represented by 3 bits
 qubo, offset = SamplingCompiler.generate_qubo_matrix(fitness_function=f, use_multiprocessing=False, input_size=3)
 print(qubo)
 
