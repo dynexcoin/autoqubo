@@ -26,8 +26,6 @@ pip install autoqubo
 
 Example
 -------
-The maximum satisfiability problem (MAX-SAT) is the problem of determining the maximum number of clauses, of a given Boolean formula in conjunctive normal form, that can be made true by an assignment of truth values to the variables of the formula. One can define a weighted version of MAX-SAT as follows: given a conjunctive normal form formula with weights assigned to each clause, find truth values for its variables that maximize the combined weight of the satisfied clauses. The MAX-SAT problem is an instance of weighted MAX-SAT where all weights are 1. 
-
 This example defines an objective function f(x), which is automatically converted and sampled on the Dynex Neuromorphic Computing Platform:
 ```
 from autoqubo import Binarization, SamplingCompiler, SearchSpace, Utils
