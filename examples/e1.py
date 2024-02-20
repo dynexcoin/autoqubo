@@ -1,4 +1,6 @@
 from autoqubo import Binarization, SamplingCompiler, SearchSpace, Utils
+import dynex
+import dimod
 
 
 s = SearchSpace()
@@ -19,5 +21,5 @@ x = s.encode({'a': 3, 'b': 6})
 print(s.decode(x))
 print(s.decode_dict(x))
 
-print(Utils.energy(q, x, offset=offset))
-print(ff(3, 6))
+sampleset = dynex.sample_qubo(q, offset, num_reads=1024, annealing_time=200)
+print(sampleset)
