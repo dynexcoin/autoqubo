@@ -63,7 +63,7 @@ if __name__ == '__main__':
     weights_vector = Binarization.get_uint_vector_type(3, 3)
     s.add('x', weights_vector, 3 * 3)
 
-    qubo, offset = SamplingCompiler.generate_qubo_matrix(f, s.size, s)
+    qubo, offset = SamplingCompiler.generate_qubo_matrix(fitness_function=f, input_size=s.size, searchspace=s)
     if SamplingCompiler.test_qubo_matrix(f, qubo, offset, search_space=s):
         print("QUBO generation successful")
     else:
