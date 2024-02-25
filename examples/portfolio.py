@@ -79,12 +79,12 @@ if __name__ == '__main__':
     sampleset = dynex.sample_qubo(qubo, offset, num_reads=1024, annealing_time=200)
     print(sampleset)
     
-    for sol in sampleset):
-        x = s.decode_dict(sol)['x']
-        e = sol.energy;
-        print(
-            f"x={x}, "
-            f"energy={e}, "
-            f"obj={variance(x)-mean(x)}, "
-            f"constraint={constraint(x)}"
-        )
+    sol = sampleset.record[0][0] # solution with best energy
+    x = s.decode_dict(sol)['x']
+    e = sampleset.first.energy
+    print(
+        f"x={x}, "
+        f"energy={e}, "
+        f"obj={variance(x)-mean(x)}, "
+        f"constraint={constraint(x)}"
+    )
